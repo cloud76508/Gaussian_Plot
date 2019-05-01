@@ -1,11 +1,20 @@
 clear all
+SPYandTLT
+close all
+clearvars -except spyDiff tltDiff Model
 clc
 
-N = 6.0;
+N = 1.0;
+threshold = 6;
 pointsNum = 50;
-threshold = 0.1;
-sigma = [0.9 0.5; 0.5 0.9];
-mu = [3 3];
+sigma = Model.Sigma;
+mu = Model.mu;
+
+% N = 1.0;
+% pointsNum = 50;
+% threshold = 3;
+% sigma = [0.03 -0.005; -0.005 0.03];
+% mu = [0.5 0.5];
 
 x=linspace(0, N,pointsNum);
 y=x;
@@ -47,12 +56,12 @@ c3(z >= threshold) = 1;
 c3(z < threshold) = 0;
 s3.CData = c3;
 
-xLab = xlabel('S');
-xLab.Position = [5 -0.5 -0.05];
-yLab = ylabel('T');
-yLab.Position = [-0.5 5 -0.08];
+xLab = xlabel('SPY');
+xLab.Position = [0.4 -0.2 -0.05];
+yLab = ylabel('TLT');
+yLab.Position = [-0.2 0.4 0.05];
 XX = yLab.Position;
-zlabel('K')
+%zlabel('K')
 
 %shading interp
 %axis tight
