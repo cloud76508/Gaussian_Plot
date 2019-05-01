@@ -1,0 +1,66 @@
+clear all
+clc
+
+% GLD data
+temp = fopen('C:\Users\User\Documents\GitHub\Gaussian_Plot\financial_data\GLD.csv');
+normalRaw = textscan(temp, '%s', 'Delimiter',',');
+gld = reshape(normalRaw{1},7,1764/7);
+gld = gld(6,2:end);
+
+gldNum = [];
+for n =1:length(gld)
+    gldNum(n) = str2num(gld{1,n});
+end
+
+i =1;
+gldDiff = [];
+for n =1:length(gldNum)-1
+   gldDiff(i) = (gldNum(n+1) - gldNum(n))/gldNum(n);
+   i=i+1;
+end
+
+
+temp = fopen('C:\Users\User\Documents\GitHub\Gaussian_Plot\financial_data\SPY.csv');
+normalRaw = textscan(temp, '%s', 'Delimiter',',');
+spy = reshape(normalRaw{1},7,1764/7);
+spy = spy(6,2:end);
+
+spyNum = [];
+for n =1:length(spy)
+    spyNum(n) = str2num(spy{1,n});
+end
+
+i =1;
+spyDiff = [];
+for n =1:length(spyNum)-1
+   spyDiff(i) = (spyNum(n+1) - spyNum(n))/spyNum(n);
+   i=i+1;
+end
+
+
+% temp = fopen('C:\Users\User\Documents\GitHub\Gaussian_Plot\financial_data\TLT.csv');
+% normalRaw = textscan(temp, '%s', 'Delimiter',',');
+% tlt = reshape(normalRaw{1},7,1764/7);
+% tlt = tlt(6,2:end);
+% 
+% tltNum = [];
+% for n =1:length(tlt)
+%     tltNum(n) = str2num(tlt{1,n});
+% end
+% 
+% i =1;
+% tltDiff = [];
+% for n =1:length(tltNum)-1
+%    tltDiff(i) = (tltNum(n+1) - tltNum(n))/tltNum(n);
+%    i=i+1;
+% end
+
+figure
+scatter(spyDiff, gldDiff)
+hold on
+viscircles([0 0],0.009,'LineStyle','--')
+xlim([-0.04 0.04])
+ylim([-0.04 0.04])
+hold off
+
+
