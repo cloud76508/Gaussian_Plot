@@ -1,6 +1,3 @@
-clear all
-clc
-
 % SPY data
 temp = fopen('C:\Users\User\Documents\GitHub\Gaussian_Plot\financial_data\SPY.csv');
 normalRaw = textscan(temp, '%s', 'Delimiter',',');

@@ -1,6 +1,3 @@
-clear all
-clc
-
 % GLD data
 temp = fopen('C:\Users\User\Documents\GitHub\Gaussian_Plot\financial_data\GLD.csv');
 normalRaw = textscan(temp, '%s', 'Delimiter',',');
